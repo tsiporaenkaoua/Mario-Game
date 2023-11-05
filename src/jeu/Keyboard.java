@@ -10,6 +10,12 @@ public class Keyboard implements KeyListener{
 	@Override
 	public void keyPressed(KeyEvent e) {
 		if(e.getKeyCode()==KeyEvent.VK_RIGHT) {
+			//met xPos a 0 pour pouvoir mettre en mouvement le fond 
+			if(main.scene.getxPos() == -1) {
+				main.scene.setxPos(0);
+				main.scene.setxBack1(-50);
+				main.scene.setxBack2(750);
+			}
 			main.scene.setDx(1);
 		}else if(e.getKeyCode()==KeyEvent.VK_LEFT) {
 			main.scene.setDx(-1);
