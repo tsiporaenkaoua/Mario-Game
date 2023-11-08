@@ -7,6 +7,8 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
+import personnages.Mario;
+
 @SuppressWarnings("serial")
 public class Scene extends JPanel {
 	
@@ -17,13 +19,14 @@ public class Scene extends JPanel {
 	private Image imgCastle1;
 	private ImageIcon iconStart;
 	private Image imgStart;
-	private ImageIcon iconMario;//**PROVISOIRE
-	private Image imageMario; //**PROVISOIRE
+
 	
 	private int xBack1;//abcisse du fond
 	private int xBack2;
 	private int dx; // pr gérer le déplacement du fond : a chaque fois qu'on appuis sur les touches droite et gauche ca modifie cette variable en 1 ou -1
 	private int xPos;// rajout de cette variable pour gérer l'emplacement des objet dans le fond (chateau...)
+	
+	public Mario mario;
 	
 	//********CONSTRUCTEUR*********//
 	public Scene() {
@@ -45,9 +48,7 @@ public class Scene extends JPanel {
 		iconStart = new ImageIcon(getClass().getResource("/images/depart.png"));//permet de chercher l'image. Puisque notre appli va être un fichier jar et que les fichiers n'auront pas la même place, ne pas utiliser la méthode normal 
 		this.imgStart = this.iconStart.getImage();
 
-		iconMario = new ImageIcon(getClass().getResource("/images/marioMarcheDroite.png"));
-		this.imageMario = this.iconMario.getImage();
-		
+		mario = new Mario(300,245);
 		
 		this.setFocusable(true);//focus sur l'ecran
 		this.requestFocusInWindow();//recupération du focus
@@ -90,14 +91,14 @@ public class Scene extends JPanel {
 	}
 	
 
-	//Cette méthode est utilisée pour dessiner le contenu du composant(JPanel par ex), c'est-à-dire pour personnaliser son apparence en dessinant des formes, du texte, des images, etc.
+	//Cette méthode est utilisée pour dessiner le contenu du composant(JPanel), c'est-à-dire pour personnaliser son apparence en dessinant des formes, du texte, des images, etc.
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics g2 = (Graphics2D)g;//caster en 2D pour une avoir un meilleur rendu
 		this.moveBackground();
 		g2.drawImage(this.imageBack1,this.xBack1,0, null);
 		g2.drawImage(this.imageBack2,this.xBack2,0, null);
-		g2.drawImage(this.imageMario,300,245, null);//*PROVISOIRE
+		g2.drawImage(this.mario.walk("mario", 25),300,245, null);
 		g2.drawImage(this.imgCastle1,10 -this.xPos,95, null);
 		g2.drawImage(this.imgStart,220-this.xPos,234, null);
 		

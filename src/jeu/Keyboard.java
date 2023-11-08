@@ -16,15 +16,22 @@ public class Keyboard implements KeyListener{
 				main.scene.setxBack1(-50);
 				main.scene.setxBack2(750);
 			}
+			main.scene.mario.setWalk(true);
+			main.scene.mario.setToRight(true);
 			main.scene.setDx(1);
 		}else if(e.getKeyCode()==KeyEvent.VK_LEFT) {
 			main.scene.setDx(-1);
+			main.scene.mario.setWalk(true);
+			main.scene.mario.setToRight(false);
 		}
 		
 	}
 
 	@Override
-	public void keyReleased(KeyEvent e) {main.scene.setDx(0);}
+	public void keyReleased(KeyEvent e) {
+		main.scene.mario.setWalk(false);
+		main.scene.setDx(0);
+	}
 
 	@Override
 	public void keyTyped(KeyEvent e) {

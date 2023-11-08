@@ -3,7 +3,7 @@ package jeu;
 import javax.swing.JFrame;
 
 public class main {
-	public static Scene scene;
+	public static Scene scene;// scene est déclaré en public static pour qu'on ait accés de partout sans avoir besoin de créer une instance
 
 	public static void main(String[] args) {
 		
